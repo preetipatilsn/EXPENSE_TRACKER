@@ -11,7 +11,7 @@ const MainNavigation = () => {
     const logoutHandler = () => {
         loginCtx.logout();
         navigate('/login');
-      }
+    };
 
   return (
     <div className={classes.mainNav}>
