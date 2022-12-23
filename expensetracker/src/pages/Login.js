@@ -1,14 +1,14 @@
 import React, { useState, useRef,useContext } from 'react';
 
 import classes from './Login.module.css';
-// import {  useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import loginContext from '../store/login-context';
 import LoginMessage from '../components/LoginMessage';
 import ForgotPassword from '../components/ForgotPassword';
 
 const Login = () => {
     const [haveAccount, setHaveAccount] = useState(true);
-    const [forgotPassword, setForgotPassword] = useState(false);
+    // const [forgotPassword, setForgotPassword] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
@@ -71,45 +71,35 @@ const Login = () => {
       alert(err.message);
     }
     };
-
-    const forgotPasswordHandler = () => {
-        setForgotPassword((preState) => {
-            return !preState;
-        });
-    };
-    
-    if(forgotPassword) {
-        return <ForgotPassword changedPassword={forgotPasswordHandler}/>
-    };
     
     if (loginCtx.isLoggedIn) {
         return <LoginMessage />
     }
 
     return (
-        <div className={classes.mainDiv}>
-          <form className={classes.form} onSubmit={loginFormHandler}>
-            <input type='email' placeholder='email' ref={emailRef} />
-            <input type='password' placeholder='password' ref={passwordRef} />
-            {!haveAccount && (
-              <input
-                type='password'
-                placeholder='confirm password'
-                ref={confirmPasswordRef}
-              />
-            )}
-            <button type='submit'>
-              {haveAccount ? 'Login' : 'Create Account'}
-            </button>
-            {haveAccount ? <p onClick={forgotPasswordHandler}>Forgot Password?</p> : ''}
-          </form>
-          <div className={classes.login} onClick={accountHandler}>
-            {haveAccount
-              ? `Don't have an account? Sign Up`
-              : `Have an account? Sign In`}
-          </div>
-        </div>
-      );
-    };
-
+        <div className={classes.wrapper}>
+      <form className={classes.form} onSubmit={loginFormHandler}>
+        <input type='email' placeholder='email' ref={emailRef} />
+        <input type='password' placeholder='password' ref={passwordRef} />
+        {!haveAccount && (
+          <input
+            type='password'
+            placeholder='confirm password'
+            ref={confirmPasswordRef}
+          />
+        )}
+        <button type='submit'>
+          {haveAccount ? 'Login' : 'Create Account'}
+        </button>
+        {haveAccount ? <Link to='/resetpassword'>Forgot Password?</Link> : ''}
+      </form>
+      <div className={classes.create} onClick={accountHandler}>
+        {haveAccount
+          ? `Don't have an account? Sign Up`
+          : `Have an account? Sign In`}
+      </div>
+    </div>
+  );
+};
+    
 export default Login;

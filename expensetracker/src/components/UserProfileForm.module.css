@@ -3,9 +3,11 @@
   margin-top: 50px;
   width: 500px;
   border: 2px solid #55482a;
+  border-radius: 5px;
   padding: 20px;
   box-sizing: border-box;
   background-color: #89764a;
+  box-shadow: 0 0 10px black;
 }
 
 .formHead {

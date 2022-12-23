@@ -1,4 +1,5 @@
-import React, { useRef, useContext,useEffect} from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import classes from './UserProfileForm.module.css';
 import profileContext from '../store/profile-context';
@@ -6,7 +7,8 @@ import profileContext from '../store/profile-context';
 const UserProfileForm = () => {
   const profileCtx = useContext(profileContext);
   const nameRef = useRef();
-  const photoRef = useRef();
+    const photoRef = useRef();
+    const navigate = useNavigate();
 
   const profileSubmitHandler = async (event) => {
       event.preventDefault();
@@ -31,6 +33,7 @@ const UserProfileForm = () => {
   
         if (res.ok) {
           // console.log(data);
+            navigate('/home');
           profileCtx.update();
         } else {
           throw data.error;
