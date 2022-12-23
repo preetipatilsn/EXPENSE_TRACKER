@@ -57,7 +57,7 @@ const Login = () => {
       if (res.ok) {
         const data = await res.json();
           console.log('User has logged in');
-          localStorage.setItem('idToken', data.idToken);
+          localStorage.setItem('idToken', JSON.stringify(data));
           setHaveAccount(true);
           emailRef.current.value = '';
           passwordRef.current.value = '';
