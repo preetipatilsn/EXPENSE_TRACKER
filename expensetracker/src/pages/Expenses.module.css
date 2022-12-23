@@ -6,7 +6,7 @@
   box-shadow: 0 0 10px black;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-bottom: 50px;
   padding: 30px;
 }
@@ -67,7 +67,16 @@
 }
 
 .title span {
-  flex-basis: 33%;
-  font-size: 18px;
+  text-align: center;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.title .titletype,
+.title .titleamount {
+  flex-basis: 20%;
+}
+
+.title .titledescription {
+  flex-basis: 40%;
 }
