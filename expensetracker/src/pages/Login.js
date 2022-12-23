@@ -3,6 +3,7 @@ import React, { useState, useRef,useContext } from 'react';
 import classes from './Login.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import loginContext from '../store/login-context';
+import LoginMessage from '../components/LoginMessage';
 
 const Login = () => {
   const [haveAccount, setHaveAccount] = useState(true);
@@ -67,32 +68,36 @@ const Login = () => {
     } catch (err) {
       alert(err.message);
     }
-  };
+    };
+    
+    if (loginCtx.isLoggedIn) {
+        return <LoginMessage />
+    }
 
-  return (
-    <div className={classes.mainDiv}>
-        <form className={classes.form} onSubmit={loginFormHandler}>
-          <input type='email' placeholder='email' ref={emailRef} />
-          <input type='password' placeholder='password' ref={passwordRef} />
-          {!haveAccount && (
-            <input
-              type='password'
-              placeholder='confirm password'
-              ref={confirmPasswordRef}
-            />
-          )}
-          <button type='submit'>
-            {haveAccount ? 'Login' : 'Create Account'}
-          </button>
-          {haveAccount ? <Link to='/'>Forgot Password</Link> : ''}
-        </form>
-        <div className={classes.login} onClick={accountHandler}>
-          {haveAccount
-            ? `Don't have an account? Sign Up`
-            : `Have an account? Sign In`}
+    return (
+        <div className={classes.mainDiv}>
+          <form className={classes.form} onSubmit={loginFormHandler}>
+            <input type='email' placeholder='email' ref={emailRef} />
+            <input type='password' placeholder='password' ref={passwordRef} />
+            {!haveAccount && (
+              <input
+                type='password'
+                placeholder='confirm password'
+                ref={confirmPasswordRef}
+              />
+            )}
+            <button type='submit'>
+              {haveAccount ? 'Login' : 'Create Account'}
+            </button>
+            {haveAccount ? <Link to='/'>Forgot Password</Link> : ''}
+          </form>
+          <div className={classes.login} onClick={accountHandler}>
+            {haveAccount
+              ? `Don't have an account? Sign Up`
+              : `Have an account? Sign In`}
+          </div>
         </div>
-    </div>
-  );
-};
+      );
+    };
 
 export default Login;
