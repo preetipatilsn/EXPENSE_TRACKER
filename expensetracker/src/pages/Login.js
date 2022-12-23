@@ -1,17 +1,19 @@
 import React, { useState, useRef,useContext } from 'react';
 
 import classes from './Login.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+// import {  useNavigate } from 'react-router-dom';
 import loginContext from '../store/login-context';
 import LoginMessage from '../components/LoginMessage';
+import ForgotPassword from '../components/ForgotPassword';
 
 const Login = () => {
-  const [haveAccount, setHaveAccount] = useState(true);
+    const [haveAccount, setHaveAccount] = useState(true);
+    const [forgotPassword, setForgotPassword] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const loginCtx = useContext(loginContext);
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
     
 
   const accountHandler = () => {
@@ -60,7 +62,7 @@ const Login = () => {
           emailRef.current.value = '';
           passwordRef.current.value = '';
           loginCtx.login();
-          navigate('/profile');
+        //   navigate('/profile');
       } else {
         const data = await res.json();
         throw data.error;
@@ -68,6 +70,16 @@ const Login = () => {
     } catch (err) {
       alert(err.message);
     }
+    };
+
+    const forgotPasswordHandler = () => {
+        setForgotPassword((preState) => {
+            return !preState;
+        });
+    };
+    
+    if(forgotPassword) {
+        return <ForgotPassword changedPassword={forgotPasswordHandler}/>
     };
     
     if (loginCtx.isLoggedIn) {
@@ -89,7 +101,7 @@ const Login = () => {
             <button type='submit'>
               {haveAccount ? 'Login' : 'Create Account'}
             </button>
-            {haveAccount ? <Link to='/'>Forgot Password</Link> : ''}
+            {haveAccount ? <p onClick={forgotPasswordHandler}>Forgot Password?</p> : ''}
           </form>
           <div className={classes.login} onClick={accountHandler}>
             {haveAccount
