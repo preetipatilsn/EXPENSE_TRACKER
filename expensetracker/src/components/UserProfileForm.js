@@ -49,7 +49,24 @@ const UserProfileForm = () => {
 
 
    // fetching profile when refreshed
-   const updateProfile = async () => {
+  //  const updateProfile = async () => {
+  //   try {
+  //     const res = await fetch(
+  //       'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDncz8xuHCf97stm52YbFh9jvASdOqjLC4',
+  //       {
+  //         method: 'POST',
+  //         body: JSON.stringify({
+  //           idToken: JSON.parse(localStorage.getItem('idToken')).idToken,
+  //         }),
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //       }
+  //     );
+
+ // fetching profile when refreshed
+ useEffect(() => {
+  const updateProfile = async () => {
     try {
       const res = await fetch(
         'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDncz8xuHCf97stm52YbFh9jvASdOqjLC4',
@@ -77,10 +94,8 @@ const UserProfileForm = () => {
       console.log(err.message);
     }
   };
-
-  useEffect(() => {
-    updateProfile();
-  }, []);
+  updateProfile();
+}, []);
 
   useEffect(() => {
     nameRef.current.value = profile.name;

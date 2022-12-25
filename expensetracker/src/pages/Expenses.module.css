@@ -16,6 +16,7 @@
 .description {
   display: flex;
   margin-bottom: 10px;
+  color: black;
 }
 
 .type select,
@@ -57,6 +58,7 @@
   box-shadow: 0 0 10px black;
   box-sizing: border-box;
   padding: 20px 10px 20px 0;
+  color: black;
 }
 
 .items .title {
@@ -72,11 +74,52 @@
   font-weight: bold;
 }
 
+.title a {
+  flex-basis: 20%;
+  text-align: center;
+}
+
 .title .titletype,
 .title .titleamount {
+  font-weight: bold;
   flex-basis: 20%;
 }
 
 .title .titledescription {
+  font-weight: bold;
   flex-basis: 40%;
+}
+
+.total {
+  margin: auto;
+  width: fit-content;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  background-color: azure;
+  color: darkcyan;
+  padding: 8px 20px 8px 20px;
+  border-radius: 5px;
+}
+
+.activate {
+  text-align: center;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.activate button {
+  padding: 8px 20px 8px 20px;
+  font-size: 18px;
+  margin-right: 20px;
+  background-color: azure;
+  color: darkcyan;
+  border: whitesmoke;
+  border-radius: 10px;
+}
+
+.a {
+  color: darkcyan;
+  text-decoration: none;
+  font-weight: bolder;
 }
