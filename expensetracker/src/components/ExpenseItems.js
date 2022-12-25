@@ -6,11 +6,10 @@ const ExpenseItems = (props) => {
     const editHandler = async() => {
         try{
           const res = await fetch(`https://expensesignup-default-rtdb.firebaseio.com/${props.emailUrl}expenses/${props.item.id}.json`,{
-            method: 'DELETE'
+              method: 'DELETE'
           })
     
           if(res.ok) {
-              console.log('deleted successfully');
               props.edit(props.item);
           }
         }
@@ -21,7 +20,7 @@ const ExpenseItems = (props) => {
     
       const deleteHandler = async() => {
         try{
-          const res = await fetch(`https://expense-tracker-e8647-default-rtdb.firebaseio.com/${props.emailUrl}expenses/${props.item.id}.json`,{
+          const res = await fetch(`https://expensesignup-default-rtdb.firebaseio.com/${props.emailUrl}expenses/${props.item.id}.json`,{
             method: 'DELETE'
           })
     

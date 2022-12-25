@@ -67,7 +67,7 @@ const Expenses = () => {
       if (expenseList.length === 0) {
         try {
           const res = await fetch(
-            `https://expense-tracker-e8647-default-rtdb.firebaseio.com/${emailUrl}expenses.json`
+            `https://expensesignup-default-rtdb.firebaseio.com//${emailUrl}expenses.json`
           );
 
           const data = await res.json();
