@@ -1,19 +1,22 @@
 import React, { useContext } from 'react';
+
 import './App.css';
+import { useSelector } from 'react-redux';
+
 import MainNavigation from './components/MainNavigation';
 import Login from './pages/Login';
 import Home from './pages/Home';
-import { Routes, Route,Navigate, Outlet } from 'react-router-dom';
+import { Routes, Route,Navigate } from 'react-router-dom';
 import UserProfile from './pages/UserProfile';
 import About from './pages/About';
 import Product from './pages/Product';
-import loginContext from './store/login-context';
-import { ProfileContextProvider } from './store/profile-context';
+// import loginContext from './store/login-context';
+// import { ProfileContextProvider } from './store/profile-context';
 import Expenses from './pages/Expenses';
 import ForgotPassword from './components/ForgotPassword';
 
 function App() {
-  const loginCtx = useContext(loginContext);
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
   return (
     <React.Fragment>
@@ -22,7 +25,7 @@ function App() {
         <Route path='/' exact element={<Navigate replace to='/home' />} />
         <Route path='/home' element={<Home />} />
 
-        {loginCtx.isLoggedIn ? (
+        {isLoggedIn ? (
           <Route path='/expenses' element={<Expenses />} />
         ) : (
           <Route path='/expenses' element={<Navigate replace to='/login' />} />
@@ -30,15 +33,9 @@ function App() {
 
         <Route path='/about' element={<About />} />
 
-        {loginCtx.isLoggedIn ? (
-         <Route
-         path='/profile'
-         element={
-           <ProfileContextProvider>
-             <UserProfile />
-           </ProfileContextProvider>
-         }
-       />
+        {isLoggedIn ? (
+         <Route path='/profile' element={<UserProfile />} />
+        
         ) : (
           <Route path='/profile' element={<Navigate replace to='/login' />} />
         )}
